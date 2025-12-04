@@ -60,7 +60,7 @@
 .below {
   width: auto;
   height: 1000px;
-  background: #eaeaea;
+  background: #ebebeb;
   display: flex;
   justify-content: center;
   
@@ -124,47 +124,67 @@
 
 
 /* =========================================
-   移动端适配补丁 (粘贴到 CSS 文件最底部)
+   移动端精致版适配 (覆盖原本的 @media)
    ========================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. 缩小标题字体，改为视口宽度的 15% */
+    /* 1. 标题不用那么巨大 */
     .above p {
-        font-size: 15vw; 
-        top: 30px; /*稍微往上提一点*/
-        letter-spacing: 2px;
+        font-size: 40px; /* 从100px降到40px */
+        top: 80px;
     }
 
-    /* 2. 让输入框变软，能屈能伸 */
+    /* 2. 输入框区域调整 */
     .input {
-        width: 60%; /* 占据剩余空间的 60% */
-        min-width: 0; /* 移除死板的最小宽度限制 */
-        font-size: 18px; /* 字体小一点 */
+        width: 65%;       /* 留空间给按钮 */
+        height: 50px;     /* 高度适中 */
+        font-size: 18px;  /* 输入字号 */
         margin-right: 2%;
+        margin-bottom: 40px; /* 离底部稍微近一点 */
     }
 
-    /* 3. 按钮也要适配 */
     .btn-add {
-        width: 25%; /* 按钮占 25% */
+        width: 25%;
+        height: 50px;
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    /* 3. 【关键】任务条瘦身 */
+    .task-item {
+        width: 95%;       /* 左右留一点边距 */
+        min-height: 60px; /* 最小高度60px，而不是死板的80px */
+        height: auto;     /* 高度随内容自动撑开 */
+        padding: 10px;    /* 内部呼吸空间 */
+        margin-top: 10px;
+    }
+
+    /* 4. 【核心】文字变小，允许换行！ */
+    .task-text {
+        font-size: 16px;      /* 30px -> 16px (关键修改) */
+        line-height: 1.5;     /* 行高舒服一点 */
+        
+        /* 下面这几行决定了文字是"..."还是"换行显示" */
+        /* 方案A：如果想显示更多字，建议允许换行 */
+        white-space: normal;  
+        text-overflow: clip;  
+        
+        /* 方案B：如果你还是坚持要省略号，就保留下面这行，删掉上面两行 */
+        /* white-space: nowrap; overflow: hidden; text-overflow: ellipsis; */
+        
+        flex: 1;              /* 占满剩余空间 */
+        min-width: 0;         /* 防止挤压 */
+    }
+
+    /* 5. 删除按钮和时间也要缩小 */
+    .task-time {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    .delete-btn {
+        width: 50px;     /* 按钮变小一点 */
+        height: 35px;
         font-size: 16px;
     }
-
-    /* 4. 列表项改为百分比宽度 */
-    .task-item {
-        width: 95%; /* 占屏幕宽度的 95% */
-        height: auto; /* 高度自适应，防止内容多时字被切掉 */
-        min-height: 80px;
-        padding: 10px; /* 给点呼吸空间 */
-        box-sizing: border-box; /* 确保padding不撑大盒子 */
-    }
-
-    /* 5. 调整列表文字大小，防止太拥挤 */
-    .task-text {
-        font-size: 18px;    /* 字体改小一点，手机更协调 */
-        max-width: unset;   /* 【关键】解开紧箍咒，不要限制最大宽度 */
-        min-width: 0;       /* 【关键】允许 flex 容器压缩内部文字，否则省略号不生效 */
-        flex: 1;            /* 自动占满除了按钮和时间之外的所有空间 */
-        margin-right: 10px; /* 间距稍微调小 */
-    }
-
 }
