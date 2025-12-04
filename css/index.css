@@ -1,0 +1,170 @@
+/*#region 上部 start  */
+.above {
+  height: 400px;
+  background-color: #40a45a;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0;
+  align-items: flex-end;
+  position: relative;
+}
+.above p {
+  color: #ffffff;
+  position: absolute;
+  top: 50px;
+  color: #fff;     
+  font-size: 100px;  
+  font-weight: bold;
+  letter-spacing: 5px; 
+
+}
+.input {
+  width: 300px;
+  min-width: 300px;
+  height: 60px;
+  margin-bottom: 60px;
+  margin-right: 5px;
+  font-size: 26px;
+  line-height: 60px;
+  text-align: left;
+  border-radius: 5px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  
+}
+.btn-add {
+  margin-bottom: 60px;
+  height: 60px;
+  width: 100px;
+  font-size: 22px;
+  line-height: 60px;
+  box-sizing: border-box;
+  background: #000;
+  color: rgb(255, 255, 255);
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+.btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+.btn-add:active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*#endregion 上部 end  */
+
+/*#region 下部 start  */
+.below {
+  width: auto;
+  height: 1000px;
+  background: #eaeaea;
+  display: flex;
+  justify-content: center;
+  
+}
+.task-item {
+  font-size: 30px;
+  height: 80px;
+  width: 600px;
+  background-color: #aeaeae;
+  line-height: 80px;
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.task-text {
+  flex: 1;
+  font-size: 30px;
+  max-width: 80%; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  margin-right: 15px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.task-time {
+    flex-shrink: 0;          
+    margin-right: 10px;    
+    color: #000000;             
+    font-size: 12px;
+}
+.delete-btn {
+  width: 60px;
+  height: 40px;
+  background-color: #830406; 
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0; 
+  flex-shrink: 0;
+}
+.delete-btn:hover {
+  background-color: #ff000d;
+}
+.completed {
+    text-decoration: line-through;
+    color: #a51e03;
+}
+/*#endregion 下部 end  */
+
+
+/* =========================================
+   移动端适配补丁 (粘贴到 CSS 文件最底部)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. 缩小标题字体，改为视口宽度的 15% */
+    .above p {
+        font-size: 15vw; 
+        top: 30px; /*稍微往上提一点*/
+        letter-spacing: 2px;
+    }
+
+    /* 2. 让输入框变软，能屈能伸 */
+    .input {
+        width: 60%; /* 占据剩余空间的 60% */
+        min-width: 0; /* 移除死板的最小宽度限制 */
+        font-size: 18px; /* 字体小一点 */
+        margin-right: 2%;
+    }
+
+    /* 3. 按钮也要适配 */
+    .btn-add {
+        width: 25%; /* 按钮占 25% */
+        font-size: 16px;
+    }
+
+    /* 4. 列表项改为百分比宽度 */
+    .task-item {
+        width: 95%; /* 占屏幕宽度的 95% */
+        height: auto; /* 高度自适应，防止内容多时字被切掉 */
+        min-height: 80px;
+        padding: 10px; /* 给点呼吸空间 */
+        box-sizing: border-box; /* 确保padding不撑大盒子 */
+    }
+
+    /* 5. 调整列表文字大小，防止太拥挤 */
+    .task-text {
+        font-size: 18px;    /* 字体改小一点，手机更协调 */
+        max-width: unset;   /* 【关键】解开紧箍咒，不要限制最大宽度 */
+        min-width: 0;       /* 【关键】允许 flex 容器压缩内部文字，否则省略号不生效 */
+        flex: 1;            /* 自动占满除了按钮和时间之外的所有空间 */
+        margin-right: 10px; /* 间距稍微调小 */
+    }
+
+}
